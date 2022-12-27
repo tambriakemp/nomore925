@@ -1,42 +1,18 @@
-{/* This code snippet will activate your blockli license and import the necessary files for blockli to work.
-    If you have an existing index.js file, just copy the code snippet and paste it after your last import statement.
-*/}
-
 import React from "react";
 import { NativeModules } from "react-native";
 const { RNCustomCode } = NativeModules;
-import {
-  initialize,
-  BlockliBlog,
-  BlockliFeatured,
-  BlockliGraphics,
-  BlockliPost,
-  BlockliVideo,
-} from "@blocklienterprise/blockli";
+
+import { initialize } from "@blocklienterprise/blockli";
 import config from "@src/build_config.json";
 
 export const applyCustomCode = async (externalCodeSetup) => {
-  const { blocksApi } = externalCodeSetup;
+  const blockli_config = {
+    license: "ETWZ0R15XB1IGU6", // Enter your 15 digit Blockli App Kit license key here. See your account dashboard at https://blockli.dev/dashboard
+    app_id: config.app_id,
+    code: externalCodeSetup,
+    website: "https://nomore925please.net", // Enter your app domain here with NO trailing slash. 
+    // NOTE: If you have a staging site, please use a different Git branch for your test app and COPY this entire code to the test branch and enter the staging site domain. 
+  };
 
-  await initialize("ETWZ0R15XB1IGU6", config.app_id); // REPLACE "374SZPV2W7WL7BQ" WITH YOUR APP KIT LICENSE KEY
-
-  blocksApi.addCustomBlockRender("blockli/blog-cards", (props) => (
-    <BlockliBlog {...props} />
-  ));
-
-  blocksApi.addCustomBlockRender("blockli/featured-cards", (props) => (
-    <BlockliFeatured {...props} />
-  ));
-
-  blocksApi.addCustomBlockRender("blockli/graphic-cards", (props) => (
-    <BlockliGraphics {...props} />
-  ));
-
-  blocksApi.addCustomBlockRender("blockli/video-cards", (props) => (
-    <BlockliVideo {...props} />
-  ));
-
-  blocksApi.addCustomBlockRender("blockli/post-cards", (props) => (
-    <BlockliPost {...props} />
-  ));
+  await initialize(blockli_config);
 };
