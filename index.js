@@ -14,5 +14,6 @@ export const applyCustomCode = async (externalCodeSetup) => {
     // NOTE: If you have a staging site, please use a different Git branch for your test app and COPY this entire code to the test branch and enter the staging site domain. 
   };
 
-  await initialize(blockli_config);
+const components = {};
+await initialize(blockli_config, components);
 };
